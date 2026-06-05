@@ -22,7 +22,7 @@ dependencies-macos:
 	brew unlink libftdi && brew link --force libftdi || true
 
 dependencies-win:
-	choco install cmake curl ninja unzip zip --no-progress -y
+	pacman --noconfirm -S --needed mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-libftdi mingw-w64-ucrt-x86_64-libusb mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-pkgconf mingw-w64-ucrt-x86_64-zlib
 
 build-openfpgaloader:  ## build openFPGALoader
 	git submodule update --init --recursive

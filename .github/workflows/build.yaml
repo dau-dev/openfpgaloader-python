@@ -31,7 +31,7 @@ jobs:
           cibuildwheel:
             - "cp311"
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         submodules: 'true'
 
@@ -61,6 +61,15 @@ jobs:
     - name: Install dependencies
       run: pip install cibuildwheel
 
+    - name: Set up MSYS2 (windows)
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: UCRT64
+        update: true
+        path-type: inherit
+        install: make
+      if: ${{ runner.os == 'Windows' }}
+
     - name: Python Wheel Steps (linux)
       run: python -m cibuildwheel --output-dir dist
       env:
@@ -79,8 +88,10 @@ jobs:
 
     - name: Python Build Steps (windows)
       run: python -m cibuildwheel --output-dir dist
+      shell: msys2 {0}
       env:
         CIBW_BUILD: "${{ matrix.cibuildwheel }}-win_amd64"
+        CMAKE_GENERATOR: MSYS Makefiles
       if: ${{ matrix.os == 'windows-2022' }}
 
     - name: Upload Wheel
