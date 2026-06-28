@@ -31,31 +31,20 @@ jobs:
           cibuildwheel:
             - "cp311"
     steps:
-<<<<<<< before updating
-    - uses: actions/checkout@v6
-=======
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-
-    - uses: actions-ext/python/setup@main
->>>>>>> after updating
       with:
         submodules: 'true'
 
     - name: Setup cache (mac/linux)
-      uses: actions/cache@v5
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
       with:
         path: "/home/runner/work/openfpgaloader-python/openfpgaloader-python/.ccache"
         key: cache-${{ runner.os }}-
         restore-keys: cache-${{ runner.os }}-
       if: ${{ runner.os != 'Windows' }}
 
-<<<<<<< before updating
     - name: Setup cache (windows)
-      uses: actions/cache@v5
-=======
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2.24.0
->>>>>>> after updating
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
       with:
         path: "C:/ProgramData/chocolatey/"
         key: cache-${{ runner.os }}-
@@ -63,7 +52,7 @@ jobs:
       if: ${{ runner.os == 'Windows' }}
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
@@ -73,7 +62,7 @@ jobs:
       run: pip install cibuildwheel
 
     - name: Set up MSYS2 (windows)
-      uses: msys2/setup-msys2@v2
+      uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884  # v2.32.0
       with:
         msystem: UCRT64
         update: true
@@ -106,7 +95,7 @@ jobs:
       if: ${{ matrix.os == 'windows-2022' }}
 
     - name: Upload Wheel
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
       with:
         name: dist-${{ runner.os }}-${{ runner.arch }}-${{ matrix.python-version }}
         path: dist/*.whl
