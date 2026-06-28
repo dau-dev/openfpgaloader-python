@@ -31,7 +31,13 @@ jobs:
           cibuildwheel:
             - "cp311"
     steps:
+<<<<<<< before updating
     - uses: actions/checkout@v6
+=======
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+    - uses: actions-ext/python/setup@main
+>>>>>>> after updating
       with:
         submodules: 'true'
 
@@ -43,8 +49,13 @@ jobs:
         restore-keys: cache-${{ runner.os }}-
       if: ${{ runner.os != 'Windows' }}
 
+<<<<<<< before updating
     - name: Setup cache (windows)
       uses: actions/cache@v5
+=======
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2.24.0
+>>>>>>> after updating
       with:
         path: "C:/ProgramData/chocolatey/"
         key: cache-${{ runner.os }}-
