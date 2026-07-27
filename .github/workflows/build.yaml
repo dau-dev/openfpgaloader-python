@@ -31,28 +31,13 @@ jobs:
           cibuildwheel:
             - "cp311"
     steps:
-<<<<<<< before updating
-    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-=======
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
-
-    - uses: actions-ext/python/setup@6e1b91a408ea89f49bc8aff8724f83826f7b5446
->>>>>>> after updating
-      with:
         submodules: 'true'
 
-<<<<<<< before updating
     - name: Setup cache (mac/linux)
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
-=======
-    - name: Test
-      run: make coverage
-
-    - name: Upload test results (Python)
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
->>>>>>> after updating
       with:
         path: "/home/runner/work/openfpgaloader-python/openfpgaloader-python/.ccache"
         key: cache-${{ runner.os }}-
@@ -77,7 +62,6 @@ jobs:
     - name: Install dependencies
       run: pip install cibuildwheel
 
-<<<<<<< before updating
     - name: Set up MSYS2 (windows)
       uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884  # v2.32.0
       with:
@@ -113,18 +97,10 @@ jobs:
 
     - name: Upload Wheel
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
-=======
-    - uses: actions-ext/python/test-wheel@6e1b91a408ea89f49bc8aff8724f83826f7b5446
-      with:
-        module: openfpgaloader
-
-    - uses: actions-ext/python/test-sdist@6e1b91a408ea89f49bc8aff8724f83826f7b5446
->>>>>>> after updating
       with:
         name: dist-${{ runner.os }}-${{ runner.arch }}-${{ matrix.python-version }}
         path: dist/*.whl
 
-<<<<<<< before updating
     - name: Install wheel (mac/linux)
       run: python -m pip install dist/*.whl
       if: ${{ runner.os != 'Windows' }}
@@ -138,9 +114,3 @@ jobs:
 
     - name: Test Wheel
       run: python -m pytest -vvv openfpgaloader/tests
-=======
-    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-      with:
-        name: dist-${{matrix.os}}
-        path: dist
->>>>>>> after updating
