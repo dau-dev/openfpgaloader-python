@@ -1,4 +1,4 @@
-from openfpgaloader import *  # noqa
+from openfpgaloader import *
 
 
 def test_all():
