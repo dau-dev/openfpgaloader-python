@@ -36,36 +36,10 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-<<<<<<< before updating
           submodules: 'true'
   
       - name: Setup cache (mac/linux)
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
-=======
-
-      - name: Setup Python
-        uses: actions-ext/python/setup@c8228d827a81b9f8c808825328af361c45461ba3
-        with:
-          version: "3.11"
-
-      - name: Install dependencies
-        run: make develop
-
-      - name: Lint
-        run: make lint
-
-      - name: Checks
-        run: make checks
-
-      - name: Build
-        run: make build
-
-      - name: Test
-        run: make coverage
-
-      - name: Upload test results (Python)
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
->>>>>>> after updating
         with:
           path: "/home/runner/work/openfpgaloader-python/openfpgaloader-python/.ccache"
           key: cache-${{ runner.os }}-
@@ -93,7 +67,6 @@ jobs:
       - name: Set up MSYS2 (windows)
         uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e  # v2.33.0
         with:
-<<<<<<< before updating
           msystem: UCRT64
           update: true
           path-type: inherit
@@ -125,13 +98,7 @@ jobs:
         if: ${{ matrix.os == 'windows-2022' }}
   
       - name: Upload Wheel
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
-=======
-          module: openfpgaloader
-
-      - name: Upload distributions
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
->>>>>>> after updating
         with:
           name: dist-${{ runner.os }}-${{ runner.arch }}-${{ matrix.python-version }}
           path: dist/*.whl
